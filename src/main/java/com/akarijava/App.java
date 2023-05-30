@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
         try (Session session = DatabaseConfig.getSession()) {
@@ -28,6 +30,12 @@ public class App {
             studentRepository.returnBook(studentId);
 
             transaction.commit();
+
+            List<Student> studentList = studentRepository.getAllStudents();
+            for(Student std:studentList){
+                System.out.println(std);
+            }
+            System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
         }
