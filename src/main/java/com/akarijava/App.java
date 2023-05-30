@@ -12,15 +12,16 @@ public class App {
             Transaction transaction = session.beginTransaction();
 
             // Create a student
-            StudentRepository studentRepository = new StudentRepository((SessionFactory) session);
+            StudentRepository studentRepository = new StudentRepository(session.getSessionFactory());
             Student student = new Student("John", "Doe", false,  1L);
             studentRepository.createStudent(student);
+            System.out.println(student);
 
             // Create a book
-            BookRepository bookRepository = new BookRepository((SessionFactory) session);
+            BookRepository bookRepository = new BookRepository(session.getSessionFactory());
             Book book = new Book("Sample Book", "Sample Author", 1L);
             bookRepository.createBook(book);
-
+            System.out.println(book);
             // Borrow a book
             Long studentId = student.getId();
             Long bookId = book.getId();
